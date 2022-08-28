@@ -1,0 +1,14 @@
+---
+ 
+- hosts: webservers
+  become: yes
+ 
+  tasks:
+  -  name: Installing Apache Webserver.
+     yum:
+       name: httpd
+       state: installed
+  -  name: Ensure httpd is running.
+     service:
+       name: httpd 
+       state: started
