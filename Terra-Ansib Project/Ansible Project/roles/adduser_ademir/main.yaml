@@ -1,5 +1,5 @@
   -  name: Creating user Ademir.
-     ueser:
+     user:
        name: ademir
        comment: Made user from Ansible.
        uid: 1040

@@ -4,6 +4,6 @@
        state: installed
   -  name: Ensure nfs-server is running.
      service:
-       name: httpd
+       name: nfs-server
        state: started
        enabled: yes
