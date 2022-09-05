@@ -1,0 +1,18 @@
+---
+
+- hosts: webservers
+  become: yes
+  roles:
+    - install_enable_nfs
+
+- hosts: dbservers
+  become: yes
+  roles:
+    - cp_master_slave
+    - adduser_ademir
+
+- hosts: testservers
+  become: yes
+  roles:
+    - update_cron
+    - install_httpd

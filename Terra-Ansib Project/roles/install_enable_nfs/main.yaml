@@ -1,0 +1,9 @@
+  -  name: Installing NFS Server.
+     yum:
+       name: nfs-utils
+       state: installed
+  -  name: Ensure nfs-server is running.
+     service:
+       name: httpd
+       state: started
+       enabled: yes

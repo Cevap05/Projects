@@ -1,0 +1,8 @@
+  -  name: Updates the server.
+     command: sudo yum install -y
+  -  name: Runs update every midnight.
+     ansible.builtin.cron:
+       name: "Midnight update."
+       minute: "0"
+       hour: "0"
+       job: "sudo yum install -y"

@@ -1,0 +1,8 @@
+[webservers]
+10.0.1.20
+
+[dbservers]
+10.0.1.30
+
+[testservers]
+10.0.1.40

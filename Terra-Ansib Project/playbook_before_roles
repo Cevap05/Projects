@@ -1,0 +1,62 @@
+---
+
+- hosts: webservers
+  become: yes
+
+  tasks:
+  -  name: Installing NFS Server.
+     yum:
+       name: nfs-utils
+       state: installed
+  -  name: Ensure nfs-server is running.
+     service:
+       name: httpd
+       state: started
+       enabled: yes
+
+
+- hosts: dbservers
+  become: yes
+
+  tasks:
+  -  name: Copying file from Master to Slave.
+     copy:
+       src: /home/centos/testfile.txt
+       dest: /home/centos/testfile.txt
+       owner: centos
+       group: centos
+       mode: '0644'
+  -  name: Creating user Ademir.
+     ueser:
+       name: ademir
+       comment: Made user from Ansible.
+       uid: 1040
+       group: wheel
+
+
+- hosts: testservers
+  become: yes
+
+  tasks:
+  -  name: Updates the server.
+     command: sudo yum install -y
+  -  name: Runs update every midnight.
+     ansible.builtin.cron:
+       name: "Midnight update."
+       minute: "0"
+       hour: "0"
+       job: "sudo yum install -y"
+  -  name: Installing Httpd Server.
+     yum:
+       name: httpd
+       state: installed
+  -  name: Ensure httpd is running.
+     service:
+       name: httpd
+       state: started
+       enabled: yes
+  -  name: Replaces ServerAdmin email in the httpd config file.
+     ansible.builtin.lineinfile:
+       path: /etc/httpd/conf/httpd.conf
+       search_string: "ServerAdmin root@localhost"
+       line: Server Admin ademir@myproject.com

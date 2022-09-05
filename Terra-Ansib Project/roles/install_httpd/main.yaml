@@ -1,0 +1,14 @@
+  -  name: Installing Httpd Server.
+     yum:
+       name: httpd
+       state: installed
+  -  name: Ensure httpd is running.
+     service:
+       name: httpd
+       state: started
+       enabled: yes
+  -  name: Replaces ServerAdmin email in the httpd config file.
+     ansible.builtin.lineinfile:
+       path: /etc/httpd/conf/httpd.conf
+       search_string: "ServerAdmin root@localhost"
+       line: Server Admin ademir@myproject.com

@@ -1,0 +1,8 @@
+  tasks:
+  -  name: Copying file from Master to Slave.
+     copy:
+       src: /home/centos/testfile.txt
+       dest: /home/centos/testfile.txt
+       owner: centos
+       group: centos
+       mode: '0644'
