@@ -9,9 +9,12 @@ Terraform: (Created...)
 -Elastic IP associated with NAT Gateway
 -NAT Gateway
 -x1 Ansible Master EC2 Instance
+ (Assigned to Public Subnet)
 -x3 Ansible Slave EC2 Instance(s)
+ (Assigned to Private Subnet) -> (Using NAT Gateway in Pub.Subnet to access IGW)
 -S3 Bucket
 -Security Groups
+ (Allowing SSH & ICMP Traffic)
 
 Ansible: (Created tasks that...)
 -Install Httpd Server
