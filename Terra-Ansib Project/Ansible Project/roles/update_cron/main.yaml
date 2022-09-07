@@ -1,8 +1,8 @@
   -  name: Updates the server.
-     command: sudo yum update -y
+     command: yum update -y
   -  name: Runs update every midnight.
      ansible.builtin.cron:
        name: "Midnight update."
        minute: "0"
        hour: "0"
-       job: "sudo yum update -y"
+       job: "yum update -y"

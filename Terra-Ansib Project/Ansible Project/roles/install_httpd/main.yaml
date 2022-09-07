@@ -10,5 +10,5 @@
   -  name: Replaces ServerAdmin email in the httpd config file.
      ansible.builtin.lineinfile:
        path: /etc/httpd/conf/httpd.conf
-       search_string: "ServerAdmin root@localhost"
-       line: Server Admin ademir@myproject.com
+       regexp: '^ServerAdmin'
+       line: ServerAdmin ademir@myproject.com

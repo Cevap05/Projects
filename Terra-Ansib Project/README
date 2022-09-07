@@ -1,1 +1,37 @@
 Using Terraform & Ansible Project!
+
+Terraform: (Created...)
+-VPC
+-Public Subnet
+-Private Subnet
+-Route Tables
+-Internet Gateway
+-Elastic IP associated with NAT Gateway
+-NAT Gateway
+-x1 Ansible Master EC2 Instance
+-x3 Ansible Slave EC2 Instance(s)
+-S3 Bucket
+-Security Groups
+
+Ansible: (Created tasks that...)
+-Install Httpd Server
+-Install NFS Server
+-Copy file from one machine to another
+-Create new user and set to group "wheel"
+-Update server
+-Run server update every midnight (added as cronjob)
+-Replace text in httpd.conf using "lineinfile"
+
+Bash Scripts used in User ID:
+
+Master Server
+-Install epel-release
+-Install Ansible
+-Install Git
+-Create SSH Key RSA Encryption
+-Send SSH Keys to Slave Servers
+
+Slave Server
+-Change password for Centos user (the one we'll be logging into)
+-Set password authentication from "no" to "yes" in /etc/ssh/sshd_config
+-Restart the sshd service after configuration changes
