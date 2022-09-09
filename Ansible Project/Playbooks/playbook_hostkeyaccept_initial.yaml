@@ -4,6 +4,6 @@
   become: yes
 
   tasks:
--   name: Write the new EC2 instance host key to known hosts.
-    connection: local
-    command: "ssh-keyscan -H {{ inventory }} >> ~/.ssh/known_hosts"
+  -  name: Write the new EC2 instance host key to known hosts.
+     connection: local
+     command: "ssh-keyscan -H {{ inventory }} >> ~/.ssh/known_hosts"
