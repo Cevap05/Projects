@@ -1,0 +1,9 @@
+---
+
+- hosts: "slave_nodes"
+  become: yes
+
+  tasks:
+-   name: Write the new EC2 instance host key to known hosts.
+    connection: local
+    shell: "ssh-keyscan -H {{ inventory }} >> ~/.ssh/known_hosts"
