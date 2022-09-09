@@ -1,0 +1,15 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  -  name: Installing Httpd Server.
+     yum:
+       name: httpd
+       state: installed
+  -  name: Ensure httpd is running.
+     service:
+       name: httpd
+       state: started
+       enabled: yes
