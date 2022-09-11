@@ -57,7 +57,7 @@ resource "aws_subnet" "public_subnet" {
 resource "aws_subnet" "private_subnet" {
     vpc_id = aws_vpc.main.id
     cidr_block = "10.0.2.0/24"
-    availability_zone = "us-east-1a"
+    availability_zone = "us-east-1b"
     map_public_ip_on_launch = "false"
 
     tags = var.my_private_subnet_name
@@ -133,6 +133,32 @@ resource "aws_route_table_association" "priv_subnet" {
 }
 
 
+# This is for creating a key each time, try it later...
+/*
+# Public key creation.
+resource "aws_key_pair" "project" {
+  key_name   = "project_key"
+  public_key = tls_private_key.rsa.public_key_openssh
+}
+
+
+# RSA key of size 4096 bits (Generates private key)
+resource "tls_private_key" "rsa" {
+  algorithm = "RSA"
+  rsa_bits  = 4096
+}
+
+
+# Creates the private key, locally to this folder.
+resource "local_file" "private" {
+    content  = tls_private_key.rsa.private_key_pem
+    filename = "TF-Private-Key"
+}
+*/
+
+
+
+
 # Ansible Slave EC2 Instance's (x3)
 resource "aws_instance" "Ans_Slaves" {
     count = var.my_instance_count
@@ -166,6 +192,26 @@ resource "aws_instance" "Ans_Master" {
     tags = var.ansible_master
 
     user_data = "${file("ans_master.sh")}"
+
+# Used if are pushing a file form local directory, to Terraform.
+/*
+    connection {
+        type        = "ssh"
+        host        = self.public_ip
+        user        = "centos"
+        private_key = file("/Users/ademir/Downloads/Ademir.pem")
+    }
+
+    provisioner "file" {
+        source      = "/Users/ademir/Downloads/Ademir.pem"
+        destination = "/home/centos/.ssh/Ademir.pem"
+    }
+*/
+
+    # Waits for Ansible Slaves to boot first, then creats Ansible Master EC2.
+    depends_on = [
+      aws_instance.Ans_Slaves
+    ]
 }
 
 

@@ -1,5 +1,6 @@
 #!/bin/bash
-sudo echo 'centos:projectpass' | sudo chpasswd
-sudo sed -i -e 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
+echo 'centos:projectpass' | sudo chpasswd
+sed -i -e 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
 echo "Restart SSHD"
-sudo systemctl restart sshd
+systemctl restart sshd
+#echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCePF2Lh432NITVlZGuyRTE3z82KLsL8cQpcNc4QDKddLf8eEsVv37KJht2RH0rRNhU15PR4IaTFye7Tc5YCwOLgxsLd0EeqkQx4d0MmGjp7i834il/MTesbgtaklOc3w7+4ttIJMSlKHzVnNAHx4TsrWbfs6GRUUkNARQb0RpaHpmwd44e22oVuw9S9OGaIBx2lO08XvY/6ICpUBWH8EXsyvaDHiXmuk/1Wdo7hP8VNEJhcRR1to7DUG73DuxC2a6RnjdRFgenyKn5OFLHypX4ZdWMcWd/8IgSV1qso8ZdH0x9M2fTZkRj30XT5z7T1L5edd1bHx4lNN9VznXUxcoV Ademir" > /home/centos/.ssh/authorized_keys
